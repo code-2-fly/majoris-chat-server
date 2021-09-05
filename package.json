@@ -1,27 +1,29 @@
 {
-    "name": "electron-chat-server",
-    "version": "1.0.0",
-    "author": "Muky-dev & root-marco",
-    "main": "app.js",
-    "license": "MIT",
-    "scripts": {
-        "build": "tsc",
-        "start": "node build/app.js",
-        "devStart": "nodemon --watch src --exec ts-node --files src/app.ts"
-    },
-    "dependencies": {
-        "bcrypt": "^5.0.1",
-        "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "mongoose": "^6.0.4",
-        "socket.io": "^4.2.0"
-    },
-    "devDependencies": {
-        "@types/cors": "^2.8.12",
-        "@types/express": "^4.17.13",
-        "@types/node": "^16.7.10",
-        "nodemon": "^2.0.12",
-        "ts-node": "^10.2.1",
-        "typescript": "^4.4.2"
-    }
+  "name": "electron-chat-server",
+  "version": "1.0.0",
+  "author": "Muky-dev & root-marco",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/server.js",
+    "devStart": "nodemon --watch src --exec ts-node --files src/server.ts"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.4",
+    "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^16.7.10",
+    "@types/socket.io": "^3.0.2",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
 }
