@@ -1,29 +1,54 @@
-import express, { Express } from 'express'
-import { createServer } from 'http'
-import { Server, Socket } from 'socket.io'
-import mongoose from 'mongoose'
+import express from "express";
+import * as http from "http";
+import * as socketIo from "socket.io";
 
-const app: Express = express()
-const httpServer = createServer(app)
+class App {
 
-const port: string | number | undefined = process.env.PORT || 4000
-const MONGO_URI: string | undefined = process.env.DB_URI || 'Error'
+  public PORT: number = 4000;
+  public app!: express.Application;
+  public server!: http.Server;
+  private io!: socketIo.Server;
 
-mongoose.connect(MONGO_URI)
+  constructor() {
 
-const db = mongoose.connection
-db.on('error', (error) => console.log(error))
-db.once('open', () => {
-    console.log('Database connected')
-})
+    this.routes();
+    this.sockets();
+    this.listen();
 
-/* ROUTES BELOW HERE */
-const io = new Server(httpServer)
-io.on('connection', (socket: Socket) => {
-    console.log(`${socket.id} connected `)
-    socket.on('message', (evt) => {
-        socket.broadcast.emit('message', evt)
-    })
-})
+  }
 
-httpServer.listen(port)
+  public routes() {
+
+    this.app = express();
+
+  }
+
+  private sockets(): void {
+
+    this.server = http.createServer(this.app);
+
+    this.io = new socketIo.Server(this.server);
+
+  }
+
+  private listen(): void {
+
+    this.io.on("connection", (socket: socketIo.Socket) => {
+      console.log(`a user connected: ${socket.id}`);
+
+      socket.on("message", function (data: any) {
+        console.log(data.cmd);
+        socket.broadcast.emit('message', data);
+      });
+
+      socket.on("disconnect", () => {
+        console.log("user disconnected");
+      });
+
+    });
+
+  }
+
+}
+
+export default new App;
