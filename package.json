@@ -10,9 +10,11 @@
         "devStart": "nodemon --watch src --exec ts-node --files src/app.ts"
     },
     "dependencies": {
+        "bcrypt": "^5.0.1",
         "cors": "^2.8.5",
         "express": "^4.17.1",
-        "mongoose": "^6.0.4"
+        "mongoose": "^6.0.4",
+        "socket.io": "^4.2.0"
     },
     "devDependencies": {
         "@types/cors": "^2.8.12",
