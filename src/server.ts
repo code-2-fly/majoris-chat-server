@@ -1,5 +1,5 @@
 import app from "./app";
-import websocket from "./websocket";
+import websocket from "./websocket/websocket";
 
 let PORT = process.env.PORT || app.PORT;
 
