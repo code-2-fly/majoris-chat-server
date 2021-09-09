@@ -1,6 +1,7 @@
 import express from "express";
 import http from "http";
 import socketIo from "socket.io";
+import path from "path";
 
 class app {
 
@@ -16,6 +17,7 @@ class app {
 
   private routes() {
     this.app = express();
+    this.app.use(express.static(path.join(__dirname, "public")));
   }
 
   private sockets(): void {
